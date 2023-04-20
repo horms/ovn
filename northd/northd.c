@@ -4601,6 +4601,9 @@ ovn_port_allocate_key(const struct sbrec_chassis_table *sbrec_chassis_table,
             if (op->sb) {
                 sbrec_port_binding_delete(op->sb);
             }
+            if (op->peer) {
+                op->peer->peer = NULL;
+            }
             ovs_list_remove(&op->list);
             ovn_port_destroy(ports, op);
         }
